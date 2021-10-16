@@ -12,7 +12,7 @@ from app import login_manager
 @auth_bp.route("/signup/", methods=["GET", "POST"])
 def show_signup_form():
     if current_user.is_authenticated:
-        return redirect(url_for('public.index'))
+        return redirect(url_for('portal.index'))
     form = SignupForm()
     error = None
     if form.validate_on_submit():

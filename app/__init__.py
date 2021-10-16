@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
-from flask_migrate import Migrate
 
-from . import db
+from .utils import db
 
 login_manager = LoginManager()
 db = db.db
