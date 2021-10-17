@@ -5,6 +5,7 @@ $(document).ready(function(){
             url: '/get_subcategory',
             type: 'POST',
             data: {category_id: category_id},
+            timeout: 4000,
             beforeSend: function () {
                 $('#loader').removeClass('hidden')
             },
@@ -35,6 +36,7 @@ $(document).ready(function(){
             type: "POST",
             url: url,
             data: form.serialize(),
+            timeout: 4000,
             beforeSend: function () {
                 $('#loader').removeClass('hidden')
             },
