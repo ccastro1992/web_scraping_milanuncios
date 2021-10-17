@@ -18,9 +18,10 @@ class Scraping(object):
         self._params = '?orden=relevance&fromSearch=1'
 
     def init_browser(self):
-        options = Options()
-        options.headless = True
-        browser = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        browser = webdriver.Chrome(options=chrome_options)
         return browser
 
     def get_content_page(self, url):
@@ -29,25 +30,26 @@ class Scraping(object):
         :param url:
         :return:
         """
-        browser = self.init_browser()
-        browser.get(url)
+        try:
+            browser = self.init_browser()
+            browser.get(url)
 
-        cont = 1
-        while True:
-            scroll_height = browser.execute_script('return document.documentElement.scrollHeight')
-            height = 250 * cont
-            browser.execute_script('window.scrollTo(0, %s);' % (str(height)))
-            if height > scroll_height:
-                break
-            time.sleep(1)
-            cont += 1
+            cont = 1
+            while True:
+                scroll_height = browser.execute_script('return document.documentElement.scrollHeight')
+                height = 250 * cont
+                browser.execute_script('window.scrollTo(0, %s);' % (str(height)))
+                if height > scroll_height:
+                    break
+                time.sleep(1)
+                cont += 1
 
-        body = browser.execute_script('return document.body')
-        source = body.get_attribute('innerHTML')
+            body = browser.execute_script('return document.body')
+            source = body.get_attribute('innerHTML')
 
-        soup = BeautifulSoup(source, 'html.parser')
-
-        browser.close()
+            soup = BeautifulSoup(source, 'html.parser')
+        finally:
+            browser.quit()
 
         return soup
 
