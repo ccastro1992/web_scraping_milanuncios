@@ -2,8 +2,6 @@ import time
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from webdriver_manager.firefox import GeckoDriverManager
 
 page = '/?pagina=1'
 
