@@ -1,8 +1,11 @@
 from os import environ
 
+"""
+Parametros de configuracion para ejecucion de aplicacion
+"""
+
 FLASK_ENV = 'development'
-#DB_URL = 'mysql://ccastro1992:crismysql1992@localhost/webscraping'
-DB_URL = 'postgresql://postgres:postgres@localhost/webscraping'
+DB_URL = 'mysql://user:password@localhost/webscraping'
 SECRET_KEY = 'Cn<?&8v2"HPa,@mh'
 
 

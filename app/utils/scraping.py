@@ -8,14 +8,14 @@ page = '/?pagina=1'
 
 class Scraping(object):
     def __init__(self, url_base=None):
-        """
-
-        :param url_base:
-        """
         self._url_base = url_base
         self._params = '?orden=relevance&fromSearch=1'
 
     def init_browser(self):
+        """
+        Metodo que inicializa un browser para acceder al sitio
+        :return: browser
+        """
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
@@ -24,9 +24,9 @@ class Scraping(object):
 
     def get_content_page(self, url):
         """
-
-        :param url:
-        :return:
+        Obtiene el contenido html de la pagina solicitada
+        :param url: parametro de sitio web
+        :return: html del contenido del sitio web
         """
         try:
             browser = self.init_browser()
@@ -53,9 +53,9 @@ class Scraping(object):
 
     def get_subcategories(self, div_category):
         """
-
-        :param div_category:
-        :return:
+        Obtiene las subcategorias del sitio web 1000anuncios.com
+        :param div_category: div de la categoria donde vamos a buscar las subcategorias (child)
+        :return: html de la subcategoria
         """
         sub_categories = []
         class_subcategory = 'ma-SharedCrosslinks-link ma-SharedCrosslinks-size-s ma-SharedCrosslinks-type-neutral'
@@ -68,8 +68,8 @@ class Scraping(object):
 
     def get_categories(self):
         """
-
-        :return:
+        Obtiene las categorias del sitio web 1000anuncios.com
+        :return: html de la categoria
         """
         categories = []
         soup = self.get_content_page(self._url_base)
@@ -87,9 +87,9 @@ class Scraping(object):
 
     def get_advertisements(self, categories):
         """
-
-        :param categories:
-        :return:
+        Obtiene los anuncios del sitio web 1000anuncios.com
+        :param categories: parametro de filtro de los anuncios
+        :return: html de los anuncios correspondientes a categoria
         """
 
         advertisements = []

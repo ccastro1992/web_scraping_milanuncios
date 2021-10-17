@@ -6,8 +6,7 @@ db = SQLAlchemy()
 class BaseModelMixin:
     def save(self):
         """
-
-        :return:
+        Almacena un nuevo registro en bdd
         """
         try:
             db.session.add(self)
@@ -18,8 +17,7 @@ class BaseModelMixin:
 
     def delete(self):
         """
-
-        :return:
+        Elimina un registro en bdd
         """
         try:
             db.session.delete(self)
@@ -31,34 +29,34 @@ class BaseModelMixin:
     @classmethod
     def get_all(cls):
         """
-
-        :return:
+        Obtiene todos los registros de la bdd
+        :return records:
         """
         return cls.query.all()
 
     @classmethod
     def get_by_id(cls, id):
         """
-
-        :param id:
-        :return:
+        Obtiene un registro de la bdd mediante el id
+        :param id (int):
+        :return record:
         """
         return cls.query.get(id)
 
     @classmethod
     def simple_filter(cls, **kwargs):
         """
-
-        :param kwargs:
-        :return:
+        Obtiene un registro filtrado por el argumento enviado
+        :param kwargs: parametros de filtro
+        :return record:
         """
         return cls.query.filter_by(**kwargs).all()
 
     @classmethod
     def get_by_name(cls, name):
         """
-
-        :param name:
-        :return:
+        Obtiene un registro filtrado por el argumento enviado
+        :param name: nombre del registro
+        :return record:
         """
         return cls.query.filter_by(name=name).first()

@@ -17,6 +17,10 @@ logger = logging.getLogger(__name__)
 @portal_bp.route("/")
 @login_required
 def index():
+    """
+    Inicializa el formulario del portal y renderiza la plantilla index
+    :return:
+    """
     form = ScrapingForm()
     error = None
     return render_template("index.html", form=form, error=error)
@@ -25,6 +29,10 @@ def index():
 @portal_bp.route("/start_scraping", methods=['POST'])
 @login_required
 def start_scraping():
+    """
+    Consulta el sitio web y obtiene las categorias para almacenar en bdd
+    :return json categorias:
+    """
     category_schema = CategorySchema()
 
     web_scraping = Scraping('https://www.milanuncios.com')
@@ -61,6 +69,10 @@ def start_scraping():
 @portal_bp.route("/get_subcategory", methods=['POST'])
 @login_required
 def get_subcategory():
+    """
+    Obtiene las subcategorias para almacenar en bdd
+    :return json subcategorias:
+    """
     category_schema = SubCategorySchema()
     category_id = int(request.values.get('category_id'))
     items = SubCategory.simple_filter(category_id=category_id)

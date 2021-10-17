@@ -8,6 +8,11 @@ db = db.db
 
 
 def create_app(settings_module):
+    """
+    Inicializa la aplicacion y setea las configuraciones y registra las urls
+    :param settings_module: parametros de configuracion de conexion BDD
+    :return: aplicacion
+    """
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(settings_module)
 
