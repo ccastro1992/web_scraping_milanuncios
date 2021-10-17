@@ -1,12 +1,16 @@
 from os import environ
 
 FLASK_ENV = 'development'
-DB_URL = 'mysql://ccastro1992:crismysql1992@localhost/webscraping'
-#DB_URL = 'postgresql://postgres:postgres@localhost/webscraping'
+#DB_URL = 'mysql://ccastro1992:crismysql1992@localhost/webscraping'
+DB_URL = 'postgresql://postgres:postgres@localhost/webscraping'
 SECRET_KEY = 'Cn<?&8v2"HPa,@mh'
 
 
 def get_config():
+    """
+
+    :return:
+    """
     enviroment = FLASK_ENV
     if enviroment == 'development':
         return Development

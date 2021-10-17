@@ -17,8 +17,9 @@ def create_app(settings_module):
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
 
-    from .portal import portal_bp
+    from .portal import portal_bp, api_bp
     app.register_blueprint(portal_bp)
+    app.register_blueprint(api_bp)
 
     with app.app_context():
         db.init_app(app)

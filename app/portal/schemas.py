@@ -1,7 +1,14 @@
 from app.utils.ma import ma
 from marshmallow_sqlalchemy import fields
 
-from .models import Category, SubCategory
+from .models import Category, SubCategory, Advertisement
+
+
+class AdvertisementSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Advertisement
+        load_instance = True
+        include_fk = True
 
 
 class SubCategorySchema(ma.SQLAlchemyAutoSchema):
